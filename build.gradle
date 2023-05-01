@@ -3,9 +3,11 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0-beta1'
+        classpath 'com.android.tools.build:gradle:8.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -14,16 +16,18 @@ buildscript {
 }
 
 project.ext {
-    compileSdkVersion = 25
-    buildToolsVersion = "25.0.2"
+    compileSdkVersion = 33
+    buildToolsVersion = "33.0.0"
     minSdkVersion = 15
-    targetSdkVersion = 25
-    libraryVersion = "0.3.7"
+    targetSdkVersion = 33
+    libraryVersion = "0.3.7A"
 }
 
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
+        google()
     }
 }
 

@@ -1,9 +1,7 @@
 plugins {
+    id 'com.android.library'
     id "com.jfrog.bintray" version "1.7.3"
-    id "com.github.dcendents.android-maven" version "1.5"
 }
-
-apply plugin: 'com.android.library'
 
 //upload settings to bintray
 ext {
@@ -30,6 +28,8 @@ ext {
 }
 
 android {
+    namespace 'com.beloo.widget.chipslayoutmanager'
+
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
@@ -48,7 +48,7 @@ android {
     buildTypes {
 
         all {
-            buildConfigField("boolean", "isLogEnabled", "false")
+//            buildConfigField("boolean", "isLogEnabled", "false")
         }
 
         release {
@@ -57,7 +57,7 @@ android {
         }
 
         development {
-            buildConfigField("boolean", "isLogEnabled", "true")
+//            buildConfigField("boolean", "isLogEnabled", "true")
         }
     }
 
@@ -73,42 +73,45 @@ task androidJavadocs(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
 }
 
-task androidJavadocsJar(type: Jar) {
-    classifier = 'javadoc'
-    baseName = artifact
-    from androidJavadocs.destinationDir
-}
+//task androidJavadocsJar(type: Jar) {
+//    classifier = 'javadoc'
+//    baseName = artifact
+//    from androidJavadocs.destinationDir
+//}
 
-task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
-    baseName = artifact
-    from android.sourceSets.main.java.srcDirs
-}
+//task androidSourcesJar(type: Jar) {
+//    classifier = 'sources'
+//    baseName = artifact
+//    from android.sourceSets.main.java.srcDirs
+//}
 
-artifacts {
-    archives androidSourcesJar
-    archives androidJavadocsJar
-}
+//artifacts {
+//    archives androidSourcesJar
+//    archives androidJavadocsJar
+//}
 
 
 def supportVersion = "25+";
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "com.android.support:appcompat-v7:$supportVersion"
-    compile "com.android.support:recyclerview-v7:$supportVersion"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.appcompat:appcompat-resources:1.6.1"
+    implementation "androidx.recyclerview:recyclerview:1.3.0"
 
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile "com.android.support:support-annotations:$supportVersion"
-    androidTestCompile 'pl.pragmatists:JUnitParams:1.0.5'
+    testImplementation 'junit:junit:4.12'
+
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+//    androidTestImplementation 'com.android.support.test:runner:0.5'
+//    androidTestImplementation "com.android.support:support-annotations:$supportVersion"
+//    androidTestImplementation 'pl.pragmatists:JUnitParams:1.0.5'
 }
 
 group = publishedGroupId // Maven Group ID for the artifact
 version = libraryVersion
 
+/*
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
@@ -190,4 +193,4 @@ bintray {
             }
         }
     }
-}
+}*/
