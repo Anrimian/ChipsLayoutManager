@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
@@ -42,6 +43,24 @@ android {
         }
     }
 
+    publishing {
+        singleVariant('release')
+    }
+}
+
+afterEvaluate {
+
+    publishing {
+        publications {
+            fullRelease(MavenPublication) {
+                from components.getByName('release')
+
+                groupId = "com.github.Anrimian"
+                artifactId = "ChipsLayoutManager"
+                version = "0.3.7F"
+            }
+        }
+    }
 }
 
 task androidJavadocs(type: Javadoc) {
