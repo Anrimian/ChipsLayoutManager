@@ -16,7 +16,7 @@ import java.util.List;
 import com.beloo.chipslayoutmanager.sample.ui.OnRemoveListener;
 import com.beloo.chipslayoutmanager.sample.R;
 import com.beloo.chipslayoutmanager.sample.entity.ChipsEntity;
-import com.beloo.chipslayoutmanager.sample.CircleTransform;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 public class ChipsAdapter extends  RecyclerView.Adapter<ChipsAdapter.ViewHolder> {
 
@@ -80,7 +80,7 @@ public class ChipsAdapter extends  RecyclerView.Adapter<ChipsAdapter.ViewHolder>
             if (entity.getDrawableResId() != 0) {
                 ivPhoto.setVisibility(View.VISIBLE);
                 Glide.with(ivPhoto.getContext()).load(entity.getDrawableResId())
-                        .transform(new CircleTransform(ivPhoto.getContext())).into(ivPhoto);
+                        .transform(new CircleCrop()).into(ivPhoto);
             } else {
                 ivPhoto.setVisibility(View.GONE);
             }

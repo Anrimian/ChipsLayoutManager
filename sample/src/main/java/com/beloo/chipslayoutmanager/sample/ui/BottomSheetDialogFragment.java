@@ -1,26 +1,23 @@
 package com.beloo.chipslayoutmanager.sample.ui;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.beloo.chipslayoutmanager.sample.R;
+import com.beloo.chipslayoutmanager.sample.databinding.FragmentBottomSheetModalBinding;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.beloo.widget.chipslayoutmanager.SpacingItemDecoration;
 
 import java.util.List;
 
-import com.beloo.chipslayoutmanager.sample.R;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+public class BottomSheetDialogFragment extends com.google.android.material.bottomsheet.BottomSheetDialogFragment {
 
-public class BottomSheetDialogFragment extends android.support.design.widget.BottomSheetDialogFragment {
-
-    @BindView(R.id.rvBottomSheet)
-    RecyclerView rvBottomSheet;
+    private FragmentBottomSheetModalBinding binding;
 
     private IItemsFactory itemsFactory = new ChipsFactory();
     private RecyclerView.Adapter adapter;
@@ -35,9 +32,8 @@ public class BottomSheetDialogFragment extends android.support.design.widget.Bot
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_bottom_sheet_modal, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentBottomSheetModalBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @SuppressWarnings("unchecked")
@@ -56,9 +52,9 @@ public class BottomSheetDialogFragment extends android.support.design.widget.Bot
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         ChipsLayoutManager layoutManager = ChipsLayoutManager.newBuilder(getContext()).build();
-        rvBottomSheet.setLayoutManager(layoutManager);
-        rvBottomSheet.setAdapter(createAdapter());
-        rvBottomSheet.addItemDecoration(new SpacingItemDecoration(getResources().getDimensionPixelOffset(R.dimen.item_space),
+        binding.rvBottomSheet.setLayoutManager(layoutManager);
+        binding.rvBottomSheet.setAdapter(createAdapter());
+        binding.rvBottomSheet.addItemDecoration(new SpacingItemDecoration(getResources().getDimensionPixelOffset(R.dimen.item_space),
                 getResources().getDimensionPixelOffset(R.dimen.item_space)));
     }
 }
