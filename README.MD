@@ -16,7 +16,7 @@ but with support of CRUD animations i decided to make such stuff and share it.
 
 with gradle
 ```GRADLE 
-compile 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
+implementation 'com.github.Anrimian:ChipsLayoutManager:v0.3.7.F'
 ```
 
 Assuming you have installed jCenter provider:
